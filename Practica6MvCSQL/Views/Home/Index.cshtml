@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Practica6MvCSQL.Models.Peliculas>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <td>
+                Codigo
+            </td>
+            <td>
+                Titulo
+            </td>
+            <td>
+                Director
+            </td>
+            <td>
+                AutorPrincipal
+            </td>
+            <td>
+                NumAutores
+            </td>
+            <td>
+                Duracion
+            </td>
+            <td>
+                Estreno
+            </td>
+            <td>
+                Borrar
+            </td>
+            <td>
+                Modificar
+            </td>
+
+        </tr>
+
+        @foreach (var pelicula in Model)
+        {
+    <tr>
+        <td>
+            @pelicula.Codigo
+
+        </td>
+        <td>
+            @pelicula.Titulo
+        </td>
+        <td>
+            @pelicula.Director
+        </td>
+        <td>
+            @pelicula.AutorPrincipal
+        </td>
+        <td>
+            @pelicula.NumAutores
+        </td>
+        <td>
+            @pelicula.Duracion
+        </td>
+        <td>
+            @pelicula.Estreno
+        </td>
+        <td>
+            <a href="/Home/Baja?cod= @pelicula.Codigo">Borra?</a>
+
+        </td>
+        <td>
+            <a href="/Home/Modificar?cod= @pelicula.Codigo">Modificar?</a>
+        </td>
+    </tr>
+        }
+
+    </table>
+    <a href="/Home/Alta">Agregar</a>
+</body>
+</html>
