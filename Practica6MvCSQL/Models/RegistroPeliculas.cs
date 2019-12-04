@@ -24,17 +24,16 @@ namespace Practica6MvCSQL.Models
         {
 
             Conectar();
-            SqlCommand comando = new SqlCommand("Insert Into TBL_PELICULA (Codigo, Titulo, Director, AutorPrincipal, No_Actores,Duracion, Estreno)" +
-               "Values (@Codigo, @Titulo, @Director, @AutorPrincipal, @No_Actores,@Duracion, @Estreno)", con);
+            SqlCommand comando = new SqlCommand("Insert Into TBL_PELICULA (Titulo, Director, AutorPrincipal, No_Actores,Duracion, Estreno)" +
+               "Values (@Titulo, @Director, @AutorPrincipal, @No_Actores,@Duracion, @Estreno)", con);
 
-            comando.Parameters.Add("@Codigo", SqlDbType.VarChar);
+          
             comando.Parameters.Add("@titulo", SqlDbType.VarChar);
             comando.Parameters.Add("@Director", SqlDbType.VarChar);
             comando.Parameters.Add("@AutorPrincipal", SqlDbType.VarChar);
             comando.Parameters.Add("@No_Actores", SqlDbType.Int);
             comando.Parameters.Add("@Duracion", SqlDbType.Float);
             comando.Parameters.Add("@Estreno", SqlDbType.Int);
-            comando.Parameters["@Codigo"].Value = peli.Codigo;
             comando.Parameters["@Titulo"].Value = peli.Titulo;
             comando.Parameters["@Director"].Value = peli.Director;
             comando.Parameters["@AutorPrincipal"].Value = peli.AutorPrincipal;
@@ -91,12 +90,12 @@ namespace Practica6MvCSQL.Models
 
             if (registro.Read())
             {
-                pelicula.Codigo = int.Parse(registro["Codigo"].ToString());
+                
                 pelicula.Titulo = registro["Titulo"].ToString();
                 pelicula.Director = registro["Director"].ToString();
                 pelicula.AutorPrincipal = registro["AutorPrincipal"].ToString();
                 pelicula.NumAutores = int.Parse(registro["No_Actores"].ToString());
-                pelicula.Duracion = float.Parse(registro["Duracion"].ToString());
+                pelicula.Duracion = double.Parse(registro["Duracion"].ToString());
                 pelicula.Estreno = int.Parse(registro["Estreno"].ToString());
 
 
@@ -110,9 +109,8 @@ namespace Practica6MvCSQL.Models
         public int Modificar(Peliculas peli)
         {
             Conectar();
-            SqlCommand comando = new SqlCommand("Update TBL_PELICULA set Codigo=@Codigo, Titulo=@Titulo, Director=@Director, AutorPrincipal=@AutorPrincipal, No_Actores=@No_Actores, " + "Duracion=@Duracion, Estreno=@Estreno where Codigo=@Codigo ", con);
-            comando.Parameters.Add("@Codigo", SqlDbType.VarChar);
-            comando.Parameters["@Codigo"].Value = peli.Codigo;
+            SqlCommand comando = new SqlCommand("Update TBL_PELICULA set Titulo=@Titulo, Director=@Director, AutorPrincipal=@AutorPrincipal, No_Actores=@No_Actores, " + "Duracion=@Duracion, Estreno=@Estreno where Codigo=@Codigo ", con);
+           
             comando.Parameters.Add("@Titulo", SqlDbType.VarChar);
             comando.Parameters["@Titulo"].Value = peli.Titulo;
             comando.Parameters.Add("@Director", SqlDbType.VarChar);
